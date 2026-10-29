@@ -1,0 +1,2693 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kingdom Cuts – Premium Barbershop</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      :root {
+        --gold: #c9a84c;
+        --gold-light: #e8c97a;
+        --gold-dark: #9a7a2e;
+        --black: #0a0a0a;
+        --black-soft: #111111;
+        --black-card: #161616;
+        --black-border: #222222;
+        --white: #ffffff;
+        --white-soft: #f5f5f0;
+        --white-muted: #cccccc;
+        --font-main: "Montserrat", sans-serif;
+        --font-display: "Playfair Display", serif;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: var(--font-main);
+        background: var(--black);
+        color: var(--white);
+        overflow-x: hidden;
+      }
+      /* SCROLLBAR */
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--black);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--gold-dark);
+        border-radius: 3px;
+      }
+      /* NAV */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        padding: 1.2rem 5%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition:
+          background 0.3s,
+          backdrop-filter 0.3s;
+      }
+      nav.scrolled {
+        background: rgba(10, 10, 10, 0.92);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--black-border);
+      }
+      .nav-logo {
+        font-family: var(--font-display);
+        font-size: 1.6rem;
+        color: var(--gold);
+        letter-spacing: 0.04em;
+      }
+      .nav-logo span {
+        color: var(--white);
+      }
+      .nav-links {
+        display: flex;
+        gap: 2.5rem;
+        list-style: none;
+      }
+      .nav-links a {
+        color: var(--white-muted);
+        text-decoration: none;
+        font-size: 0.82rem;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        transition: color 0.25s;
+      }
+      .nav-links a:hover {
+        color: var(--gold);
+      }
+      .nav-cta {
+        background: var(--gold);
+        color: var(--black);
+        padding: 0.55rem 1.4rem;
+        border-radius: 2px;
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition:
+          background 0.25s,
+          transform 0.2s;
+      }
+      .nav-cta:hover {
+        background: var(--gold-light);
+        transform: translateY(-1px);
+      }
+
+      /* HERO */
+      #hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+        text-align: center;
+        padding: 0 5%;
+      }
+      .hero-bg {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, #000 0%, #0d0d0d 50%, #1a1208 100%);
+      }
+      .hero-pattern {
+        position: absolute;
+        inset: 0;
+        opacity: 0.04;
+        background-image: repeating-linear-gradient(
+          45deg,
+          var(--gold) 0,
+          var(--gold) 1px,
+          transparent 0,
+          transparent 50%
+        );
+        background-size: 20px 20px;
+      }
+      .hero-ornament {
+        position: absolute;
+        width: 600px;
+        height: 600px;
+        border: 1px solid rgba(201, 168, 76, 0.08);
+        border-radius: 50%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .hero-ornament::before {
+        content: "";
+        position: absolute;
+        inset: 40px;
+        border: 1px solid rgba(201, 168, 76, 0.06);
+        border-radius: 50%;
+      }
+      .hero-content {
+        position: relative;
+        z-index: 1;
+        max-width: 780px;
+      }
+      .hero-badge {
+        display: inline-block;
+        border: 1px solid var(--gold-dark);
+        color: var(--gold);
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        padding: 0.4rem 1.2rem;
+        margin-bottom: 2rem;
+        border-radius: 1px;
+      }
+      .hero-title {
+        font-family: var(--font-display);
+        font-size: clamp(2.8rem, 6vw, 5.2rem);
+        font-weight: 700;
+        line-height: 1.1;
+        margin-bottom: 1.2rem;
+        letter-spacing: 0.01em;
+      }
+      .hero-title .gold {
+        color: var(--gold);
+      }
+      .hero-sub {
+        font-size: 1.05rem;
+        color: var(--white-muted);
+        font-weight: 300;
+        letter-spacing: 0.04em;
+        margin-bottom: 2.8rem;
+        line-height: 1.7;
+      }
+      .btn-gold {
+        display: inline-block;
+        background: var(--gold);
+        color: var(--black);
+        padding: 0.85rem 2.4rem;
+        font-weight: 700;
+        font-size: 0.82rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        text-decoration: none;
+        border-radius: 2px;
+        transition: all 0.25s;
+        cursor: pointer;
+        border: none;
+        font-family: var(--font-main);
+      }
+      .btn-gold:hover {
+        background: var(--gold-light);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(201, 168, 76, 0.25);
+      }
+      .btn-outline {
+        display: inline-block;
+        background: transparent;
+        color: var(--gold);
+        padding: 0.85rem 2.4rem;
+        font-weight: 700;
+        font-size: 0.82rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        text-decoration: none;
+        border: 1px solid var(--gold);
+        border-radius: 2px;
+        transition: all 0.25s;
+        cursor: pointer;
+        font-family: var(--font-main);
+        margin-left: 1rem;
+      }
+      .btn-outline:hover {
+        background: rgba(201, 168, 76, 0.1);
+      }
+      .hero-stats {
+        display: flex;
+        justify-content: center;
+        gap: 4rem;
+        margin-top: 4rem;
+        padding-top: 3rem;
+        border-top: 1px solid var(--black-border);
+      }
+      .stat-num {
+        font-family: var(--font-display);
+        font-size: 2.2rem;
+        color: var(--gold);
+        font-weight: 700;
+      }
+      .stat-label {
+        font-size: 0.72rem;
+        color: var(--white-muted);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        margin-top: 0.3rem;
+      }
+      /* SECTION COMMONS */
+      section {
+        padding: 6rem 5%;
+      }
+      .sec-eyebrow {
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 0.9rem;
+      }
+      .sec-title {
+        font-family: var(--font-display);
+        font-size: clamp(2rem, 3.5vw, 3rem);
+        font-weight: 700;
+        margin-bottom: 1.2rem;
+        line-height: 1.2;
+      }
+      .sec-desc {
+        color: var(--white-muted);
+        font-size: 0.95rem;
+        line-height: 1.8;
+        max-width: 560px;
+      }
+      .divider {
+        width: 60px;
+        height: 2px;
+        background: var(--gold);
+        margin: 1.5rem 0;
+      }
+      /* SERVICES */
+      #services {
+        background: var(--black-soft);
+      }
+      .services-header {
+        text-align: center;
+        margin-bottom: 3.5rem;
+      }
+      .services-header .sec-desc {
+        margin: 0 auto;
+      }
+      .services-header .divider {
+        margin: 1.5rem auto;
+      }
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1.5rem;
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+      .service-card {
+        background: var(--black-card);
+        border: 1px solid var(--black-border);
+        padding: 2.2rem 1.8rem;
+        border-radius: 4px;
+        transition: all 0.3s;
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+      }
+      .service-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--gold);
+        transform: scaleX(0);
+        transition: transform 0.3s;
+      }
+      .service-card:hover {
+        border-color: var(--gold-dark);
+        transform: translateY(-4px);
+      }
+      .service-card:hover::before {
+        transform: scaleX(1);
+      }
+      .service-icon {
+        font-size: 2.2rem;
+        margin-bottom: 1.2rem;
+      }
+      .service-name {
+        font-weight: 700;
+        font-size: 1rem;
+        letter-spacing: 0.04em;
+        margin-bottom: 0.5rem;
+      }
+      .service-desc {
+        font-size: 0.82rem;
+        color: var(--white-muted);
+        line-height: 1.7;
+        margin-bottom: 1.2rem;
+      }
+      .service-price {
+        color: var(--gold);
+        font-weight: 700;
+        font-size: 1.1rem;
+        font-family: var(--font-display);
+      }
+      .service-duration {
+        font-size: 0.75rem;
+        color: var(--white-muted);
+        margin-top: 0.2rem;
+      }
+      /* BARBERS */
+      #barbers {
+        background: var(--black);
+      }
+      .barbers-header {
+        text-align: center;
+        margin-bottom: 3.5rem;
+      }
+      .barbers-header .divider {
+        margin: 1.5rem auto;
+      }
+      .barbers-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 2rem;
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+      .barber-card {
+        background: var(--black-card);
+        border: 1px solid var(--black-border);
+        border-radius: 4px;
+        overflow: hidden;
+        transition: all 0.3s;
+        cursor: pointer;
+      }
+      .barber-card:hover {
+        border-color: var(--gold-dark);
+        transform: translateY(-4px);
+      }
+      .barber-avatar {
+        height: 220px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 5rem;
+        background: linear-gradient(160deg, #1a1a1a, #111);
+      }
+      .barber-info {
+        padding: 1.5rem;
+      }
+      .barber-name {
+        font-weight: 700;
+        font-size: 1.05rem;
+        margin-bottom: 0.3rem;
+      }
+      .barber-role {
+        font-size: 0.78rem;
+        color: var(--gold);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-bottom: 0.8rem;
+      }
+      .barber-stars {
+        color: var(--gold);
+        font-size: 0.9rem;
+        letter-spacing: 0.1em;
+      }
+      .barber-reviews {
+        font-size: 0.75rem;
+        color: var(--white-muted);
+        margin-left: 0.5rem;
+      }
+      .barber-specialty {
+        font-size: 0.8rem;
+        color: var(--white-muted);
+        margin-top: 0.7rem;
+        line-height: 1.6;
+      }
+      /* BOOKING */
+      #booking {
+        background: var(--black-soft);
+      }
+      .booking-wrap {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      .booking-header {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+      .booking-header .divider {
+        margin: 1.5rem auto;
+      }
+      .booking-steps {
+        display: flex;
+        justify-content: center;
+        gap: 0;
+        margin-bottom: 3rem;
+        position: relative;
+      }
+      .booking-steps::before {
+        content: "";
+        position: absolute;
+        top: 18px;
+        left: 15%;
+        right: 15%;
+        height: 1px;
+        background: var(--black-border);
+        z-index: 0;
+      }
+      .step {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        flex: 1;
+        position: relative;
+        z-index: 1;
+      }
+      .step-num {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        border: 1px solid var(--black-border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.8rem;
+        font-weight: 700;
+        background: var(--black-card);
+        transition: all 0.3s;
+        color: var(--white-muted);
+      }
+      .step-num.active {
+        background: var(--gold);
+        border-color: var(--gold);
+        color: var(--black);
+      }
+      .step-num.done {
+        background: var(--gold-dark);
+        border-color: var(--gold-dark);
+        color: var(--black);
+      }
+      .step-label {
+        font-size: 0.68rem;
+        color: var(--white-muted);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        text-align: center;
+      }
+      .booking-form {
+        background: var(--black-card);
+        border: 1px solid var(--black-border);
+        border-radius: 6px;
+        padding: 2.5rem;
+      }
+      .form-panel {
+        display: none;
+      }
+      .form-panel.active {
+        display: block;
+      }
+      .form-title {
+        font-size: 1rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        margin-bottom: 1.8rem;
+        color: var(--gold);
+        text-transform: uppercase;
+      }
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.2rem;
+        margin-bottom: 1.2rem;
+      }
+      .form-group {
+        margin-bottom: 1.2rem;
+      }
+      .form-label {
+        display: block;
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--white-muted);
+        margin-bottom: 0.6rem;
+      }
+      .form-input {
+        width: 100%;
+        background: var(--black-soft);
+        border: 1px solid var(--black-border);
+        color: var(--white);
+        padding: 0.75rem 1rem;
+        font-family: var(--font-main);
+        font-size: 0.9rem;
+        border-radius: 2px;
+        outline: none;
+        transition: border-color 0.25s;
+      }
+      .form-input:focus {
+        border-color: var(--gold);
+      }
+      .form-input::placeholder {
+        color: #444;
+      }
+      .select-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1rem;
+      }
+      .select-card {
+        background: var(--black-soft);
+        border: 1px solid var(--black-border);
+        padding: 1.2rem;
+        border-radius: 3px;
+        cursor: pointer;
+        transition: all 0.25s;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+      .select-card:hover {
+        border-color: var(--gold-dark);
+      }
+      .select-card.selected {
+        border-color: var(--gold);
+        background: rgba(201, 168, 76, 0.07);
+      }
+      .select-card .icon {
+        font-size: 1.6rem;
+        flex-shrink: 0;
+      }
+      .select-card .name {
+        font-size: 0.88rem;
+        font-weight: 600;
+        margin-bottom: 0.2rem;
+      }
+      .select-card .meta {
+        font-size: 0.75rem;
+        color: var(--white-muted);
+      }
+      .select-card .price {
+        font-size: 0.9rem;
+        color: var(--gold);
+        font-weight: 700;
+        margin-top: 0.3rem;
+      }
+      .barber-select-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 1rem;
+      }
+      .barber-sel {
+        background: var(--black-soft);
+        border: 1px solid var(--black-border);
+        padding: 1.4rem 1rem;
+        border-radius: 3px;
+        cursor: pointer;
+        transition: all 0.25s;
+        text-align: center;
+      }
+      .barber-sel:hover {
+        border-color: var(--gold-dark);
+      }
+      .barber-sel.selected {
+        border-color: var(--gold);
+        background: rgba(201, 168, 76, 0.07);
+      }
+      .barber-sel .ava {
+        font-size: 2.4rem;
+        margin-bottom: 0.5rem;
+      }
+      .barber-sel .bname {
+        font-size: 0.85rem;
+        font-weight: 600;
+      }
+      .barber-sel .bspec {
+        font-size: 0.72rem;
+        color: var(--white-muted);
+        margin-top: 0.2rem;
+      }
+      .time-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+        gap: 0.7rem;
+      }
+      .time-slot {
+        background: var(--black-soft);
+        border: 1px solid var(--black-border);
+        padding: 0.6rem 0.5rem;
+        text-align: center;
+        font-size: 0.83rem;
+        font-weight: 500;
+        border-radius: 2px;
+        cursor: pointer;
+        transition: all 0.25s;
+      }
+      .time-slot:hover {
+        border-color: var(--gold-dark);
+      }
+      .time-slot.selected {
+        background: var(--gold);
+        border-color: var(--gold);
+        color: var(--black);
+        font-weight: 700;
+      }
+      .time-slot.booked {
+        opacity: 0.35;
+        cursor: not-allowed;
+        pointer-events: none;
+        text-decoration: line-through;
+      }
+      .form-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--black-border);
+      }
+      .btn-prev {
+        background: transparent;
+        border: 1px solid var(--black-border);
+        color: var(--white-muted);
+        padding: 0.75rem 1.8rem;
+        font-family: var(--font-main);
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        border-radius: 2px;
+        cursor: pointer;
+        transition: all 0.25s;
+      }
+      .btn-prev:hover {
+        border-color: var(--white-muted);
+        color: var(--white);
+      }
+      .btn-next {
+        background: var(--gold);
+        border: none;
+        color: var(--black);
+        padding: 0.75rem 2rem;
+        font-family: var(--font-main);
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        border-radius: 2px;
+        cursor: pointer;
+        transition: all 0.25s;
+      }
+      .btn-next:hover {
+        background: var(--gold-light);
+      }
+      /* SUMMARY CARD */
+      .summary-card {
+        background: var(--black-soft);
+        border: 1px solid var(--black-border);
+        border-radius: 3px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+      .summary-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid var(--black-border);
+      }
+      .summary-row:last-child {
+        border-bottom: none;
+        padding-top: 0.9rem;
+      }
+      .summary-label {
+        font-size: 0.8rem;
+        color: var(--white-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+      .summary-val {
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+      .summary-total .summary-label {
+        color: var(--gold);
+        font-weight: 700;
+        font-size: 0.85rem;
+      }
+      .summary-total .summary-val {
+        color: var(--gold);
+        font-weight: 700;
+        font-size: 1.1rem;
+        font-family: var(--font-display);
+      }
+      /* SUCCESS */
+      .success-box {
+        text-align: center;
+        padding: 2rem 0;
+      }
+      .success-icon {
+        font-size: 3.5rem;
+        margin-bottom: 1rem;
+      }
+      .success-title {
+        font-family: var(--font-display);
+        font-size: 1.8rem;
+        color: var(--gold);
+        margin-bottom: 0.8rem;
+      }
+      .success-msg {
+        color: var(--white-muted);
+        font-size: 0.9rem;
+        line-height: 1.8;
+        margin-bottom: 2rem;
+      }
+      .wa-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.7rem;
+        background: #25d366;
+        color: #fff;
+        padding: 0.9rem 2rem;
+        border-radius: 2px;
+        font-weight: 700;
+        font-size: 0.85rem;
+        letter-spacing: 0.08em;
+        text-decoration: none;
+        transition: all 0.25s;
+        text-transform: uppercase;
+      }
+      .wa-btn:hover {
+        background: #1ebe5d;
+        transform: translateY(-2px);
+      }
+      /* PRICING */
+      #pricing {
+        background: var(--black);
+      }
+      .pricing-header {
+        text-align: center;
+        margin-bottom: 3.5rem;
+      }
+      .pricing-header .divider {
+        margin: 1.5rem auto;
+      }
+      .pricing-table {
+        max-width: 800px;
+        margin: 0 auto;
+        background: var(--black-card);
+        border: 1px solid var(--black-border);
+        border-radius: 6px;
+        overflow: hidden;
+      }
+      .pricing-row {
+        display: grid;
+        grid-template-columns: 1fr auto auto;
+        align-items: center;
+        padding: 1.3rem 2rem;
+        border-bottom: 1px solid var(--black-border);
+        transition: background 0.2s;
+      }
+      .pricing-row:last-child {
+        border-bottom: none;
+      }
+      .pricing-row:hover {
+        background: rgba(201, 168, 76, 0.04);
+      }
+      .pricing-row.header {
+        background: var(--black-soft);
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--white-muted);
+      }
+      .p-name {
+        font-weight: 600;
+        font-size: 0.95rem;
+      }
+      .p-duration {
+        font-size: 0.8rem;
+        color: var(--white-muted);
+        margin-top: 0.2rem;
+      }
+      .p-badge {
+        font-size: 0.68rem;
+        background: rgba(201, 168, 76, 0.15);
+        color: var(--gold);
+        padding: 0.25rem 0.6rem;
+        border-radius: 2px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        margin-left: 0.8rem;
+      }
+      .p-price {
+        font-family: var(--font-display);
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--gold);
+        min-width: 80px;
+        text-align: right;
+      }
+      .p-book {
+        font-size: 0.75rem;
+        color: var(--white-muted);
+        padding: 0.4rem 0.9rem;
+        border: 1px solid var(--black-border);
+        border-radius: 2px;
+        cursor: pointer;
+        transition: all 0.2s;
+        background: transparent;
+        font-family: var(--font-main);
+        white-space: nowrap;
+        margin-left: 1rem;
+      }
+      .p-book:hover {
+        border-color: var(--gold);
+        color: var(--gold);
+      }
+      /* GALLERY */
+      #gallery {
+        background: var(--black-soft);
+      }
+      .gallery-header {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+      .gallery-header .divider {
+        margin: 1.5rem auto;
+      }
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+      .gallery-item {
+        background: var(--black-card);
+        border: 1px solid var(--black-border);
+        border-radius: 4px;
+        overflow: hidden;
+        aspect-ratio: 4/5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3.5rem;
+        transition: all 0.3s;
+        cursor: pointer;
+        position: relative;
+      }
+      .gallery-item:hover {
+        border-color: var(--gold-dark);
+        transform: scale(1.02);
+      }
+      .gallery-item .overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(201, 168, 76, 0.1);
+        opacity: 0;
+        transition: 0.3s;
+        display: flex;
+        align-items: flex-end;
+        padding: 1rem;
+      }
+      .gallery-item:hover .overlay {
+        opacity: 1;
+      }
+      .gallery-label {
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--gold);
+      }
+      /* TESTIMONIALS */
+      #testimonials {
+        background: var(--black);
+      }
+      .testi-header {
+        text-align: center;
+        margin-bottom: 3.5rem;
+      }
+      .testi-header .divider {
+        margin: 1.5rem auto;
+      }
+      .testi-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+      .testi-card {
+        background: var(--black-card);
+        border: 1px solid var(--black-border);
+        padding: 2rem;
+        border-radius: 4px;
+        position: relative;
+        transition: all 0.3s;
+      }
+      .testi-card:hover {
+        border-color: var(--gold-dark);
+      }
+      .testi-card::before {
+        content: '"';
+        position: absolute;
+        top: 1rem;
+        right: 1.5rem;
+        font-family: var(--font-display);
+        font-size: 5rem;
+        color: rgba(201, 168, 76, 0.08);
+        line-height: 1;
+      }
+      .testi-stars {
+        color: var(--gold);
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+        letter-spacing: 0.1em;
+      }
+      .testi-text {
+        font-size: 0.88rem;
+        line-height: 1.8;
+        color: var(--white-muted);
+        margin-bottom: 1.5rem;
+        font-style: italic;
+      }
+      .testi-author {
+        display: flex;
+        align-items: center;
+        gap: 0.9rem;
+      }
+      .testi-ava {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: var(--black-soft);
+        border: 1px solid var(--gold-dark);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+      }
+      .testi-name {
+        font-weight: 600;
+        font-size: 0.88rem;
+      }
+      .testi-since {
+        font-size: 0.72rem;
+        color: var(--white-muted);
+        letter-spacing: 0.06em;
+      }
+      /* ADMIN */
+      #admin {
+        background: var(--black-soft);
+        display: none;
+      }
+      .admin-wrap {
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+      .admin-header-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2.5rem;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      .admin-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 1rem;
+        margin-bottom: 2.5rem;
+      }
+      .admin-stat {
+        background: var(--black-card);
+        border: 1px solid var(--black-border);
+        padding: 1.3rem 1.5rem;
+        border-radius: 4px;
+      }
+      .admin-stat-num {
+        font-family: var(--font-display);
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--gold);
+      }
+      .admin-stat-label {
+        font-size: 0.72rem;
+        color: var(--white-muted);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-top: 0.3rem;
+      }
+      .admin-table-wrap {
+        background: var(--black-card);
+        border: 1px solid var(--black-border);
+        border-radius: 6px;
+        overflow: hidden;
+        overflow-x: auto;
+      }
+      .admin-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.85rem;
+        min-width: 700px;
+      }
+      .admin-table th {
+        background: var(--black-soft);
+        padding: 1rem 1.3rem;
+        text-align: left;
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--white-muted);
+        border-bottom: 1px solid var(--black-border);
+      }
+      .admin-table td {
+        padding: 1rem 1.3rem;
+        border-bottom: 1px solid rgba(34, 34, 34, 0.5);
+        vertical-align: middle;
+      }
+      .admin-table tr:last-child td {
+        border-bottom: none;
+      }
+      .admin-table tr:hover td {
+        background: rgba(201, 168, 76, 0.02);
+      }
+      .status-badge {
+        display: inline-block;
+        padding: 0.3rem 0.8rem;
+        border-radius: 2px;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .status-pending {
+        background: rgba(201, 168, 76, 0.15);
+        color: var(--gold);
+      }
+      .status-done {
+        background: rgba(39, 174, 96, 0.15);
+        color: #6ec68f;
+      }
+      .status-cancel {
+        background: rgba(220, 53, 69, 0.12);
+        color: #e88;
+      }
+      .action-btn {
+        background: transparent;
+        border: 1px solid var(--black-border);
+        color: var(--white-muted);
+        padding: 0.35rem 0.8rem;
+        border-radius: 2px;
+        font-size: 0.72rem;
+        cursor: pointer;
+        font-family: var(--font-main);
+        transition: all 0.2s;
+        margin-right: 0.3rem;
+      }
+      .action-btn:hover {
+        border-color: var(--gold);
+        color: var(--gold);
+      }
+      .action-btn.danger:hover {
+        border-color: #e88;
+        color: #e88;
+      }
+      /* ADMIN FILTER */
+      .admin-filters {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        flex-wrap: wrap;
+      }
+      .filter-btn {
+        background: var(--black-card);
+        border: 1px solid var(--black-border);
+        color: var(--white-muted);
+        padding: 0.5rem 1.2rem;
+        border-radius: 2px;
+        font-size: 0.78rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-family: var(--font-main);
+      }
+      .filter-btn.active {
+        border-color: var(--gold);
+        color: var(--gold);
+        background: rgba(201, 168, 76, 0.06);
+      }
+      /* FOOTER */
+      footer {
+        background: var(--black-card);
+        border-top: 1px solid var(--black-border);
+        padding: 3.5rem 5% 2rem;
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 3rem;
+        margin-bottom: 3rem;
+      }
+      .footer-logo {
+        font-family: var(--font-display);
+        font-size: 1.6rem;
+        color: var(--gold);
+        margin-bottom: 1rem;
+      }
+      .footer-about {
+        font-size: 0.83rem;
+        color: var(--white-muted);
+        line-height: 1.8;
+      }
+      .footer-heading {
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--white);
+        margin-bottom: 1.2rem;
+      }
+      .footer-links {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.7rem;
+      }
+      .footer-links a {
+        color: var(--white-muted);
+        text-decoration: none;
+        font-size: 0.83rem;
+        transition: color 0.2s;
+      }
+      .footer-links a:hover {
+        color: var(--gold);
+      }
+      .footer-bottom {
+        border-top: 1px solid var(--black-border);
+        padding-top: 1.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      .footer-copy {
+        font-size: 0.78rem;
+        color: var(--white-muted);
+      }
+      .footer-tagline {
+        font-family: var(--font-display);
+        font-size: 0.9rem;
+        color: var(--gold-dark);
+        font-style: italic;
+      }
+      /* TOAST */
+      .toast {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        background: var(--black-card);
+        border: 1px solid var(--gold-dark);
+        color: var(--white);
+        padding: 1rem 1.5rem;
+        border-radius: 4px;
+        font-size: 0.85rem;
+        z-index: 9999;
+        transform: translateY(100px);
+        opacity: 0;
+        transition: all 0.4s;
+        max-width: 320px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+      }
+      .toast.show {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      .toast-icon {
+        color: var(--gold);
+        margin-right: 0.5rem;
+      }
+      /* MODAL */
+      .modal-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.85);
+        z-index: 2000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s;
+      }
+      .modal-overlay.open {
+        opacity: 1;
+        pointer-events: all;
+      }
+      .modal-box {
+        background: var(--black-card);
+        border: 1px solid var(--black-border);
+        border-radius: 6px;
+        padding: 2.5rem;
+        max-width: 500px;
+        width: 100%;
+        transform: scale(0.95);
+        transition: transform 0.3s;
+      }
+      .modal-overlay.open .modal-box {
+        transform: scale(1);
+      }
+      .modal-close {
+        float: right;
+        background: none;
+        border: none;
+        color: var(--white-muted);
+        font-size: 1.4rem;
+        cursor: pointer;
+        line-height: 1;
+        padding: 0.2rem;
+      }
+      .modal-close:hover {
+        color: var(--white);
+      }
+      /* RESPONSIVE */
+      @media (max-width: 900px) {
+        .footer-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .gallery-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .form-row {
+          grid-template-columns: 1fr;
+        }
+      }
+      @media (max-width: 640px) {
+        .nav-links,
+        .nav-cta {
+          display: none;
+        }
+        .hamburger {
+          display: flex;
+        }
+        .hero-stats {
+          gap: 2rem;
+        }
+        .stat-num {
+          font-size: 1.6rem;
+        }
+        .gallery-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .footer-grid {
+          grid-template-columns: 1fr;
+        }
+        .btn-outline {
+          display: none;
+        }
+        .booking-steps::before {
+          left: 10%;
+          right: 10%;
+        }
+        .pricing-row {
+          grid-template-columns: 1fr auto;
+          gap: 0.5rem;
+        }
+        .p-book {
+          display: none;
+        }
+      }
+      /* MOBILE NAV */
+
+      .mobile-nav a {
+        color: var(--white-muted);
+        text-decoration: none;
+        font-size: 1rem;
+        font-weight: 500;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid var(--black-border);
+        letter-spacing: 0.06em;
+      }
+      .mobile-nav a:last-child {
+        border-bottom: none;
+        color: var(--gold);
+        font-weight: 700;
+      }
+
+      /* FADE ANIM */
+      .fade-in {
+        opacity: 0;
+        transform: translateY(24px);
+        transition:
+          opacity 0.6s,
+          transform 0.6s;
+      }
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      /* ADMIN TOGGLE BTN */
+      .admin-toggle {
+        position: fixed;
+        bottom: 2rem;
+        left: 2rem;
+        background: var(--black-card);
+        border: 1px solid var(--black-border);
+        color: var(--white-muted);
+        padding: 0.6rem 1.2rem;
+        border-radius: 2px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        cursor: pointer;
+        z-index: 500;
+        font-family: var(--font-main);
+        transition: all 0.2s;
+      }
+      .admin-toggle:hover {
+        border-color: var(--gold);
+        color: var(--gold);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAV -->
+    <nav id="mainNav">
+      <div class="nav-logo">Kingdom<span>Cuts</span></div>
+      <ul class="nav-links">
+        <li><a href="#services">Layanan</a></li>
+        <li><a href="#barbers">Barber</a></li>
+        <li><a href="#pricing">Harga</a></li>
+        <li><a href="#gallery">Galeri</a></li>
+        <li><a href="#testimonials">Ulasan</a></li>
+      </ul>
+      <a href="#booking" class="nav-cta">Booking Sekarang</a>
+    </nav>
+
+    <!-- HERO -->
+    <section id="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-pattern"></div>
+      <div class="hero-ornament"></div>
+      <div class="hero-content fade-in">
+        <div class="hero-badge">✦ Est. 2019 — Premium Barbershop</div>
+        <h1 class="hero-title">
+          Premium<br /><span class="gold">Barbershop</span><br />Experience
+        </h1>
+        <p class="hero-sub">
+          Booking mudah, tanpa antri — hasil terbaik dari barber profesional
+          kami
+        </p>
+        <a href="#booking" class="btn-gold">Booking Sekarang</a>
+        <a href="#services" class="btn-outline">Lihat Layanan</a>
+        <div class="hero-stats">
+          <div class="stat">
+            <div class="stat-num">2.4K+</div>
+            <div class="stat-label">Pelanggan Puas</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">8</div>
+            <div class="stat-label">Barber Expert</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">4.9★</div>
+            <div class="stat-label">Rating Google</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services">
+      <div class="services-header fade-in">
+        <div class="sec-eyebrow">✦ Apa yang Kami Tawarkan</div>
+        <h2 class="sec-title">Layanan Kami</h2>
+        <div class="divider"></div>
+        <p class="sec-desc">
+          Dari potongan klasik hingga styling modern, semua tersedia dengan
+          standar kualitas premium.
+        </p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card fade-in" data-service="Potong Rambut Classic">
+          <div class="service-icon">✂️</div>
+          <div class="service-name">Potong Rambut Classic</div>
+          <div class="service-desc">
+            Potongan rambut presisi dengan teknik barbering tradisional. Cocok
+            untuk semua tipe rambut.
+          </div>
+          <div class="service-price">Rp 45.000</div>
+          <div class="service-duration">⏱ 30–45 menit</div>
+        </div>
+        <div class="service-card fade-in" data-service="Cukur Jenggot">
+          <div class="service-icon">🪒</div>
+          <div class="service-name">Cukur Jenggot</div>
+          <div class="service-desc">
+            Shaving profesional dengan pisau cukur premium dan hot towel
+            treatment.
+          </div>
+          <div class="service-price">Rp 35.000</div>
+          <div class="service-duration">⏱ 20–30 menit</div>
+        </div>
+        <div class="service-card fade-in" data-service="Hair Styling">
+          <div class="service-icon">💇</div>
+          <div class="service-name">Hair Styling</div>
+          <div class="service-desc">
+            Styling dengan produk premium. Pomade, clay, wax — sesuai selera dan
+            tekstur rambut.
+          </div>
+          <div class="service-price">Rp 30.000</div>
+          <div class="service-duration">⏱ 15–20 menit</div>
+        </div>
+        <div class="service-card fade-in" data-service="Paket Lengkap">
+          <div class="service-icon">👑</div>
+          <div class="service-name">Paket Lengkap</div>
+          <div class="service-desc">
+            Potong + Jenggot + Styling + Cuci rambut. Pengalaman barbershop
+            penuh dalam satu sesi.
+          </div>
+          <div class="service-price">Rp 100.000</div>
+          <div class="service-duration">⏱ 75–90 menit</div>
+        </div>
+        <div class="service-card fade-in" data-service="Cat Rambut">
+          <div class="service-icon">🎨</div>
+          <div class="service-name">Cat Rambut</div>
+          <div class="service-desc">
+            Pewarnaan rambut dengan produk berkualitas. Highlights, ombre, atau
+            full color tersedia.
+          </div>
+          <div class="service-price">Rp 150.000</div>
+          <div class="service-duration">⏱ 60–90 menit</div>
+        </div>
+        <div class="service-card fade-in" data-service="Perawatan Rambut">
+          <div class="service-icon">🧴</div>
+          <div class="service-name">Perawatan Rambut</div>
+          <div class="service-desc">
+            Treatment masker rambut, keratin ringan, dan pijat kepala untuk
+            rambut sehat berkilau.
+          </div>
+          <div class="service-price">Rp 80.000</div>
+          <div class="service-duration">⏱ 45–60 menit</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BARBERS -->
+    <section id="barbers">
+      <div class="barbers-header fade-in">
+        <div class="sec-eyebrow">✦ Tim Profesional Kami</div>
+        <h2 class="sec-title">Kenali Para Barber</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="barbers-grid">
+        <div class="barber-card fade-in">
+          <div class="barber-avatar">👨‍🦱</div>
+          <div class="barber-info">
+            <div class="barber-name">Rizky Pratama</div>
+            <div class="barber-role">Master Barber · 8 Tahun</div>
+            <div>
+              <span class="barber-stars">★★★★★</span
+              ><span class="barber-reviews">4.9 (312 ulasan)</span>
+            </div>
+            <div class="barber-specialty">
+              Spesialis fade & potongan klasik. Pernah juara barbershop
+              championship nasional.
+            </div>
+          </div>
+        </div>
+        <div class="barber-card fade-in">
+          <div class="barber-avatar">🧔</div>
+          <div class="barber-info">
+            <div class="barber-name">Dimas Aditya</div>
+            <div class="barber-role">Senior Barber · 5 Tahun</div>
+            <div>
+              <span class="barber-stars">★★★★★</span
+              ><span class="barber-reviews">4.8 (241 ulasan)</span>
+            </div>
+            <div class="barber-specialty">
+              Ahli beard grooming dan teknik shaving tradisional. Sertifikasi
+              internasional.
+            </div>
+          </div>
+        </div>
+        <div class="barber-card fade-in">
+          <div class="barber-avatar">👱</div>
+          <div class="barber-info">
+            <div class="barber-name">Andi Nugroho</div>
+            <div class="barber-role">Senior Barber · 4 Tahun</div>
+            <div>
+              <span class="barber-stars">★★★★★</span
+              ><span class="barber-reviews">4.8 (198 ulasan)</span>
+            </div>
+            <div class="barber-specialty">
+              Pakar hair styling modern dan pewarnaan rambut. Selalu update tren
+              terkini.
+            </div>
+          </div>
+        </div>
+        <div class="barber-card fade-in">
+          <div class="barber-avatar">🧑‍🦰</div>
+          <div class="barber-info">
+            <div class="barber-name">Fajar Ramadhan</div>
+            <div class="barber-role">Barber · 2 Tahun</div>
+            <div>
+              <span class="barber-stars">★★★★☆</span
+              ><span class="barber-reviews">4.7 (120 ulasan)</span>
+            </div>
+            <div class="barber-specialty">
+              Teknik skin fade dan design rambut. Energik dan kreatif dalam
+              setiap potongan.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section id="pricing">
+      <div class="pricing-header fade-in">
+        <div class="sec-eyebrow">✦ Transparan & Terjangkau</div>
+        <h2 class="sec-title">Daftar Harga</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="pricing-table fade-in">
+        <div class="pricing-row header">
+          <div>Layanan</div>
+          <div style="text-align: right">Harga</div>
+          <div></div>
+        </div>
+        <div class="pricing-row">
+          <div>
+            <div class="p-name">Potong Rambut Classic</div>
+            <div class="p-duration">30–45 menit</div>
+          </div>
+          <div class="p-price">Rp 45.000</div>
+          <div>
+            <button
+              class="p-book"
+              onclick="bookService('Potong Rambut Classic')"
+            >
+              Booking
+            </button>
+          </div>
+        </div>
+        <div class="pricing-row">
+          <div>
+            <div class="p-name">Potong + Styling</div>
+            <div class="p-duration">45–60 menit</div>
+          </div>
+          <div class="p-price">Rp 65.000</div>
+          <div>
+            <button class="p-book" onclick="bookService('Hair Styling')">
+              Booking
+            </button>
+          </div>
+        </div>
+        <div class="pricing-row">
+          <div>
+            <div class="p-name">Cukur Jenggot</div>
+            <div class="p-duration">20–30 menit</div>
+          </div>
+          <div class="p-price">Rp 35.000</div>
+          <div>
+            <button class="p-book" onclick="bookService('Cukur Jenggot')">
+              Booking
+            </button>
+          </div>
+        </div>
+        <div class="pricing-row">
+          <div>
+            <div class="p-name">Hair Styling</div>
+            <div class="p-duration">15–20 menit</div>
+          </div>
+          <div class="p-price">Rp 30.000</div>
+          <div>
+            <button class="p-book" onclick="bookService('Hair Styling')">
+              Booking
+            </button>
+          </div>
+        </div>
+        <div class="pricing-row">
+          <div>
+            <div class="p-name">
+              Paket Lengkap <span class="p-badge">TERLARIS</span>
+            </div>
+            <div class="p-duration">75–90 menit</div>
+          </div>
+          <div class="p-price">Rp 100.000</div>
+          <div>
+            <button class="p-book" onclick="bookService('Paket Lengkap')">
+              Booking
+            </button>
+          </div>
+        </div>
+        <div class="pricing-row">
+          <div>
+            <div class="p-name">Cat Rambut</div>
+            <div class="p-duration">60–90 menit</div>
+          </div>
+          <div class="p-price">Rp 150.000</div>
+          <div>
+            <button class="p-book" onclick="bookService('Cat Rambut')">
+              Booking
+            </button>
+          </div>
+        </div>
+        <div class="pricing-row">
+          <div>
+            <div class="p-name">Perawatan Rambut</div>
+            <div class="p-duration">45–60 menit</div>
+          </div>
+          <div class="p-price">Rp 80.000</div>
+          <div>
+            <button class="p-book" onclick="bookService('Perawatan Rambut')">
+              Booking
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery">
+      <div class="gallery-header fade-in">
+        <div class="sec-eyebrow">✦ Karya Terbaik Kami</div>
+        <h2 class="sec-title">Galeri Hasil Potongan</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item fade-in" style="font-size: 4rem">
+          ✂️
+          <div class="overlay">
+            <span class="gallery-label">Fade Classic</span>
+          </div>
+        </div>
+        <div class="gallery-item fade-in" style="font-size: 4rem">
+          💈
+          <div class="overlay">
+            <span class="gallery-label">Skin Fade</span>
+          </div>
+        </div>
+        <div class="gallery-item fade-in" style="font-size: 4rem">
+          🪒
+          <div class="overlay">
+            <span class="gallery-label">Beard Shaping</span>
+          </div>
+        </div>
+        <div class="gallery-item fade-in" style="font-size: 4rem">
+          👑
+          <div class="overlay">
+            <span class="gallery-label">Pompadour</span>
+          </div>
+        </div>
+        <div class="gallery-item fade-in" style="font-size: 4rem">
+          🎨
+          <div class="overlay">
+            <span class="gallery-label">Color Highlight</span>
+          </div>
+        </div>
+        <div class="gallery-item fade-in" style="font-size: 4rem">
+          💇
+          <div class="overlay">
+            <span class="gallery-label">Undercut Modern</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BOOKING -->
+    <section id="booking">
+      <div class="booking-wrap">
+        <div class="booking-header fade-in">
+          <div class="sec-eyebrow">✦ Mudah & Cepat</div>
+          <h2 class="sec-title">Booking Online</h2>
+          <div class="divider"></div>
+          <p class="sec-desc" style="margin: 0 auto">
+            Isi formulir di bawah dan kami akan konfirmasi lewat WhatsApp dalam
+            5 menit.
+          </p>
+        </div>
+
+        <!-- STEPS -->
+        <div class="booking-steps fade-in">
+          <div class="step">
+            <div class="step-num active" id="sn1">1</div>
+            <div class="step-label">Layanan</div>
+          </div>
+          <div class="step">
+            <div class="step-num" id="sn2">2</div>
+            <div class="step-label">Barber</div>
+          </div>
+          <div class="step">
+            <div class="step-num" id="sn3">3</div>
+            <div class="step-label">Jadwal</div>
+          </div>
+          <div class="step">
+            <div class="step-num" id="sn4">4</div>
+            <div class="step-label">Data Diri</div>
+          </div>
+          <div class="step">
+            <div class="step-num" id="sn5">5</div>
+            <div class="step-label">Konfirmasi</div>
+          </div>
+        </div>
+
+        <div class="booking-form fade-in">
+          <!-- PANEL 1: LAYANAN -->
+          <div class="form-panel active" id="panel1">
+            <div class="form-title">Pilih Layanan</div>
+            <div class="select-grid">
+              <div
+                class="select-card"
+                onclick="
+                  selectService(this, 'Potong Rambut Classic', 'Rp 45.000')
+                "
+              >
+                <div class="icon">✂️</div>
+                <div>
+                  <div class="name">Potong Classic</div>
+                  <div class="price">Rp 45.000</div>
+                  <div class="meta">30–45 menit</div>
+                </div>
+              </div>
+              <div
+                class="select-card"
+                onclick="selectService(this, 'Cukur Jenggot', 'Rp 35.000')"
+              >
+                <div class="icon">🪒</div>
+                <div>
+                  <div class="name">Cukur Jenggot</div>
+                  <div class="price">Rp 35.000</div>
+                  <div class="meta">20–30 menit</div>
+                </div>
+              </div>
+              <div
+                class="select-card"
+                onclick="selectService(this, 'Hair Styling', 'Rp 30.000')"
+              >
+                <div class="icon">💇</div>
+                <div>
+                  <div class="name">Hair Styling</div>
+                  <div class="price">Rp 30.000</div>
+                  <div class="meta">15–20 menit</div>
+                </div>
+              </div>
+              <div
+                class="select-card"
+                onclick="selectService(this, 'Paket Lengkap', 'Rp 100.000')"
+              >
+                <div class="icon">👑</div>
+                <div>
+                  <div class="name">Paket Lengkap</div>
+                  <div class="price">Rp 100.000</div>
+                  <div class="meta">75–90 menit</div>
+                </div>
+              </div>
+              <div
+                class="select-card"
+                onclick="selectService(this, 'Cat Rambut', 'Rp 150.000')"
+              >
+                <div class="icon">🎨</div>
+                <div>
+                  <div class="name">Cat Rambut</div>
+                  <div class="price">Rp 150.000</div>
+                  <div class="meta">60–90 menit</div>
+                </div>
+              </div>
+              <div
+                class="select-card"
+                onclick="selectService(this, 'Perawatan Rambut', 'Rp 80.000')"
+              >
+                <div class="icon">🧴</div>
+                <div>
+                  <div class="name">Perawatan Rambut</div>
+                  <div class="price">Rp 80.000</div>
+                  <div class="meta">45–60 menit</div>
+                </div>
+              </div>
+            </div>
+            <div class="form-nav">
+              <div></div>
+              <button class="btn-next" onclick="goStep(2)">Lanjut →</button>
+            </div>
+          </div>
+
+          <!-- PANEL 2: BARBER -->
+          <div class="form-panel" id="panel2">
+            <div class="form-title">Pilih Barber</div>
+            <div class="barber-select-grid">
+              <div
+                class="barber-sel"
+                onclick="selectBarber(this, 'Rizky Pratama')"
+              >
+                <div class="ava">👨‍🦱</div>
+                <div class="bname">Rizky Pratama</div>
+                <div class="bspec">Master Barber</div>
+              </div>
+              <div
+                class="barber-sel"
+                onclick="selectBarber(this, 'Dimas Aditya')"
+              >
+                <div class="ava">🧔</div>
+                <div class="bname">Dimas Aditya</div>
+                <div class="bspec">Senior Barber</div>
+              </div>
+              <div
+                class="barber-sel"
+                onclick="selectBarber(this, 'Andi Nugroho')"
+              >
+                <div class="ava">👱</div>
+                <div class="bname">Andi Nugroho</div>
+                <div class="bspec">Senior Barber</div>
+              </div>
+              <div
+                class="barber-sel"
+                onclick="selectBarber(this, 'Fajar Ramadhan')"
+              >
+                <div class="ava">🧑‍🦰</div>
+                <div class="bname">Fajar Ramadhan</div>
+                <div class="bspec">Barber</div>
+              </div>
+            </div>
+            <div class="form-nav">
+              <button class="btn-prev" onclick="goStep(1)">← Kembali</button>
+              <button class="btn-next" onclick="goStep(3)">Lanjut →</button>
+            </div>
+          </div>
+
+          <!-- PANEL 3: JADWAL -->
+          <div class="form-panel" id="panel3">
+            <div class="form-title">Pilih Jadwal</div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Tanggal</label>
+                <input
+                  type="date"
+                  class="form-input"
+                  id="bookDate"
+                  onchange="loadTimeSlots()"
+                />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Slot Waktu Tersedia</label>
+                <div class="time-grid" id="timeGrid">
+                  <div
+                    style="
+                      color: var(--white-muted);
+                      font-size: 0.83rem;
+                      padding: 0.5rem 0;
+                    "
+                  >
+                    Pilih tanggal terlebih dahulu
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-nav">
+              <button class="btn-prev" onclick="goStep(2)">← Kembali</button>
+              <button class="btn-next" onclick="goStep(4)">Lanjut →</button>
+            </div>
+          </div>
+
+          <!-- PANEL 4: DATA DIRI -->
+          <div class="form-panel" id="panel4">
+            <div class="form-title">Data Diri</div>
+            <div class="form-group">
+              <label class="form-label">Nama Lengkap *</label>
+              <input
+                type="text"
+                class="form-input"
+                id="custName"
+                placeholder="Masukkan nama lengkap Anda"
+              />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Nomor WhatsApp *</label>
+              <input
+                type="tel"
+                class="form-input"
+                id="custWa"
+                placeholder="08xxxxxxxxxx"
+              />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Catatan Tambahan</label>
+              <textarea
+                class="form-input"
+                id="custNote"
+                rows="3"
+                placeholder="Contoh: minta potongan pendek di sisi kiri..."
+                style="resize: vertical"
+              ></textarea>
+            </div>
+            <div class="form-nav">
+              <button class="btn-prev" onclick="goStep(3)">← Kembali</button>
+              <button class="btn-next" onclick="goStep(5)">Lanjut →</button>
+            </div>
+          </div>
+
+          <!-- PANEL 5: KONFIRMASI -->
+          <div class="form-panel" id="panel5">
+            <div class="form-title">Konfirmasi Booking</div>
+            <div class="summary-card" id="summaryCard"></div>
+            <div class="form-nav">
+              <button class="btn-prev" onclick="goStep(4)">← Kembali</button>
+              <button class="btn-next" onclick="submitBooking()">
+                ✓ Konfirmasi & Booking
+              </button>
+            </div>
+          </div>
+
+          <!-- PANEL SUCCESS -->
+          <div class="form-panel" id="panelSuccess">
+            <div class="success-box">
+              <div class="success-icon">✅</div>
+              <div class="success-title">Booking Berhasil!</div>
+              <div class="success-msg">
+                Terima kasih <strong id="successName"></strong>! Booking Anda
+                telah kami terima.<br />Kami akan mengkonfirmasi via WhatsApp
+                dalam 5 menit.
+              </div>
+              <a href="#" class="wa-btn" id="waLink">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                  <path
+                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"
+                  />
+                </svg>
+                Konfirmasi via WhatsApp
+              </a>
+              <br /><br />
+              <button
+                class="btn-gold"
+                onclick="resetBooking()"
+                style="margin-top: 0.5rem"
+              >
+                Booking Lagi
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section id="testimonials">
+      <div class="testi-header fade-in">
+        <div class="sec-eyebrow">✦ Kata Mereka</div>
+        <h2 class="sec-title">Ulasan Pelanggan</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="testi-grid">
+        <div class="testi-card fade-in">
+          <div class="testi-stars">★★★★★</div>
+          <div class="testi-text">
+            Barber terbaik di Balikpapan! Hasil potongannya selalu rapi dan
+            sesuai request. Nggak pernah kecewa sejak pertama kali ke sini.
+            Booking online-nya juga sangat memudahkan, langsung dapat konfirmasi
+            cepat.
+          </div>
+          <div class="testi-author">
+            <div class="testi-ava">👤</div>
+            <div>
+              <div class="testi-name">Budi Santoso</div>
+              <div class="testi-since">Pelanggan sejak 2021</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card fade-in">
+          <div class="testi-stars">★★★★★</div>
+          <div class="testi-text">
+            Suasana barbershopnya premium banget, kaya di luar negeri. Barbernya
+            ramah dan profesional. Rizky bener-bener master di fade, hasilnya
+            selalu clean dan tajam. Wajib coba paket lengkapnya!
+          </div>
+          <div class="testi-author">
+            <div class="testi-ava">👤</div>
+            <div>
+              <div class="testi-name">Arif Wibowo</div>
+              <div class="testi-since">Pelanggan setia</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card fade-in">
+          <div class="testi-stars">★★★★★</div>
+          <div class="testi-text">
+            Sistem booking online-nya gampang banget, tinggal pilih layanan,
+            barber, waktu — selesai! Apalagi ada integrasi WhatsApp, jadi
+            langsung dapat konfirmasi. Pelayanannya konsisten bagus dari
+            kunjungan pertama sampai sekarang.
+          </div>
+          <div class="testi-author">
+            <div class="testi-ava">👤</div>
+            <div>
+              <div class="testi-name">Hendra Putra</div>
+              <div class="testi-since">Pelanggan 3 tahun</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ADMIN SECTION -->
+    <section id="admin">
+      <div class="admin-wrap">
+        <div class="admin-header-row">
+          <div>
+            <div class="sec-eyebrow">✦ Dashboard</div>
+            <h2 class="sec-title" style="margin-bottom: 0">Admin Panel</h2>
+          </div>
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap">
+            <input
+              type="text"
+              class="form-input"
+              id="adminSearch"
+              placeholder="Cari nama / no. HP..."
+              style="width: 220px"
+              oninput="renderAdminTable()"
+            />
+            <button
+              class="btn-gold"
+              onclick="exportCSV()"
+              style="padding: 0.6rem 1.2rem; font-size: 0.78rem"
+            >
+              ⬇ Export CSV
+            </button>
+            <button
+              class="btn-outline"
+              onclick="toggleAdmin()"
+              style="padding: 0.6rem 1.2rem; font-size: 0.78rem"
+            >
+              ✕ Tutup
+            </button>
+          </div>
+        </div>
+        <div class="admin-stats" id="adminStats"></div>
+        <div class="admin-filters">
+          <button class="filter-btn active" onclick="setFilter('semua', this)">
+            Semua
+          </button>
+          <button class="filter-btn" onclick="setFilter('pending', this)">
+            Pending
+          </button>
+          <button class="filter-btn" onclick="setFilter('selesai', this)">
+            Selesai
+          </button>
+          <button class="filter-btn" onclick="setFilter('batal', this)">
+            Dibatalkan
+          </button>
+        </div>
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Nama</th>
+                <th>WhatsApp</th>
+                <th>Layanan</th>
+                <th>Barber</th>
+                <th>Tanggal & Jam</th>
+                <th>Status</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="adminBody"></tbody>
+          </table>
+        </div>
+        <div
+          id="emptyAdmin"
+          style="
+            text-align: center;
+            padding: 3rem;
+            color: var(--white-muted);
+            display: none;
+          "
+        >
+          <div style="font-size: 2.5rem; margin-bottom: 0.8rem">📋</div>
+          Belum ada data booking
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">KingdomCuts</div>
+          <p class="footer-about">
+            Premium barbershop di Balikpapan yang menghadirkan pengalaman
+            grooming berkelas dengan harga terjangkau. Kami berkomitmen pada
+            kualitas dan kepuasan pelanggan.
+          </p>
+        </div>
+        <div>
+          <div class="footer-heading">Navigasi</div>
+          <ul class="footer-links">
+            <li><a href="#services">Layanan</a></li>
+            <li><a href="#barbers">Tim Barber</a></li>
+            <li><a href="#pricing">Harga</a></li>
+            <li><a href="#gallery">Galeri</a></li>
+            <li><a href="#testimonials">Ulasan</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-heading">Jam Buka</div>
+          <ul class="footer-links" style="gap: 0.5rem">
+            <li><span style="color: var(--white)">Senin – Jumat</span></li>
+            <li><span>09.00 – 21.00 WITA</span></li>
+            <li>
+              <span
+                style="color: var(--white); margin-top: 0.5rem; display: block"
+                >Sabtu – Minggu</span
+              >
+            </li>
+            <li><span>08.00 – 22.00 WITA</span></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-heading">Kontak</div>
+          <ul class="footer-links">
+            <li><a href="tel:+628001234567">📞 0800-1234-567</a></li>
+            <li><a href="https://wa.me/628001234567">💬 WhatsApp</a></li>
+            <li><a href="#">📍 Jl. Ahmad Yani, Balikpapan</a></li>
+            <li><a href="#">📸 @KingdomCutsBpn</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copy">© 2025 KingdomCuts. All rights reserved.</div>
+        <div class="footer-tagline">Look Sharp. Feel Sharp.</div>
+      </div>
+    </footer>
+
+    <!-- TOAST -->
+    <div class="toast" id="toast">
+      <span class="toast-icon">✦</span><span id="toastMsg"></span>
+    </div>
+
+    <!-- ADMIN TOGGLE -->
+    <button class="admin-toggle" onclick="toggleAdmin()">⚙ Admin</button>
+
+    <!-- BOOKING DETAIL MODAL -->
+    <div class="modal-overlay" id="detailModal">
+      <div class="modal-box">
+        <button class="modal-close" onclick="closeModal()">×</button>
+        <div
+          style="
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            color: var(--gold);
+            margin-bottom: 1.2rem;
+          "
+        >
+          Detail Booking
+        </div>
+        <div id="modalContent"></div>
+      </div>
+    </div>
+
+    <script>
+      // ─── DATA ───────────────────────────────────────
+      const TIMES = [
+        "09:00",
+        "09:30",
+        "10:00",
+        "10:30",
+        "11:00",
+        "11:30",
+        "13:00",
+        "13:30",
+        "14:00",
+        "14:30",
+        "15:00",
+        "15:30",
+        "16:00",
+        "16:30",
+        "17:00",
+        "17:30",
+        "18:00",
+        "18:30",
+        "19:00",
+        "19:30",
+        "20:00",
+      ];
+      const PRICES = {
+        "Potong Rambut Classic": "Rp 45.000",
+        "Cukur Jenggot": "Rp 35.000",
+        "Hair Styling": "Rp 30.000",
+        "Paket Lengkap": "Rp 100.000",
+        "Cat Rambut": "Rp 150.000",
+        "Perawatan Rambut": "Rp 80.000",
+      };
+
+      let booking = {
+        service: "",
+        servicePrice: "",
+        barber: "",
+        date: "",
+        time: "",
+        name: "",
+        wa: "",
+        note: "",
+      };
+      let adminFilter = "semua";
+      let currentStep = 1;
+
+      // ─── STORAGE ─────────────────────────────────────
+      function getBookings() {
+        try {
+          return JSON.parse(localStorage.getItem("kc_bookings") || "[]");
+        } catch {
+          return [];
+        }
+      }
+      function saveBookings(d) {
+        localStorage.setItem("kc_bookings", JSON.stringify(d));
+      }
+
+      // ─── NAV ─────────────────────────────────────────
+      window.addEventListener("scroll", () => {
+        document
+          .getElementById("mainNav")
+          .classList.toggle("scrolled", window.scrollY > 60);
+      });
+
+      // ─── FADE IN ─────────────────────────────────────
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("visible");
+              io.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.12 },
+      );
+      document.querySelectorAll(".fade-in").forEach((el) => io.observe(el));
+
+      // ─── DATE MIN ────────────────────────────────────
+      document.addEventListener("DOMContentLoaded", () => {
+        const d = document.getElementById("bookDate");
+        if (d) {
+          const t = new Date();
+          d.min = t.toISOString().split("T")[0];
+        }
+      });
+
+      // ─── BOOKING STEPS ───────────────────────────────
+      function goStep(n) {
+        if (n > currentStep && !validateStep(currentStep)) return;
+        document
+          .getElementById("panel" + currentStep)
+          .classList.remove("active");
+        currentStep = n;
+        document.getElementById("panel" + n)?.classList.add("active");
+        updateStepUI();
+        if (n === 5) buildSummary();
+        document
+          .getElementById("booking")
+          .scrollIntoView({ behavior: "smooth" });
+      }
+      function updateStepUI() {
+        for (let i = 1; i <= 5; i++) {
+          const el = document.getElementById("sn" + i);
+          el.classList.remove("active", "done");
+          if (i < currentStep) el.classList.add("done");
+          else if (i === currentStep) el.classList.add("active");
+        }
+      }
+      function validateStep(n) {
+        if (n === 1 && !booking.service) {
+          showToast("Pilih layanan terlebih dahulu");
+          return false;
+        }
+        if (n === 2 && !booking.barber) {
+          showToast("Pilih barber terlebih dahulu");
+          return false;
+        }
+        if (n === 3) {
+          if (!booking.date) {
+            showToast("Pilih tanggal");
+            return false;
+          }
+          if (!booking.time) {
+            showToast("Pilih jam");
+            return false;
+          }
+        }
+        if (n === 4) {
+          if (!document.getElementById("custName").value.trim()) {
+            showToast("Masukkan nama Anda");
+            return false;
+          }
+          const wa = document.getElementById("custWa").value.trim();
+          if (!wa || !/^0[0-9]{8,12}$/.test(wa)) {
+            showToast("Nomor WhatsApp tidak valid (contoh: 08123456789)");
+            return false;
+          }
+          booking.name = document.getElementById("custName").value.trim();
+          booking.wa = wa;
+          booking.note = document.getElementById("custNote").value.trim();
+        }
+        return true;
+      }
+
+      // ─── SELECT SERVICE ───────────────────────────────
+      function selectService(el, name, price) {
+        document
+          .querySelectorAll("#panel1 .select-card")
+          .forEach((c) => c.classList.remove("selected"));
+        el.classList.add("selected");
+        booking.service = name;
+        booking.servicePrice = price;
+      }
+      function selectBarber(el, name) {
+        document
+          .querySelectorAll(".barber-sel")
+          .forEach((c) => c.classList.remove("selected"));
+        el.classList.add("selected");
+        booking.barber = name;
+      }
+
+      // ─── TIME SLOTS ───────────────────────────────────
+      function loadTimeSlots() {
+        const date = document.getElementById("bookDate").value;
+        booking.date = date;
+        booking.time = "";
+        const grid = document.getElementById("timeGrid");
+        if (!date) {
+          grid.innerHTML =
+            '<div style="color:var(--white-muted);font-size:.83rem">Pilih tanggal terlebih dahulu</div>';
+          return;
+        }
+        const booked = getBookings()
+          .filter(
+            (b) =>
+              b.date === date &&
+              b.barber === booking.barber &&
+              b.status !== "batal",
+          )
+          .map((b) => b.time);
+        grid.innerHTML = TIMES.map(
+          (t) =>
+            `<div class="time-slot${booked.includes(t) ? " booked" : ""}" onclick="selectTime(this,'${t}')">${t}</div>`,
+        ).join("");
+      }
+      function selectTime(el, t) {
+        document
+          .querySelectorAll(".time-slot")
+          .forEach((s) => s.classList.remove("selected"));
+        el.classList.add("selected");
+        booking.time = t;
+      }
+
+      // ─── SUMMARY ─────────────────────────────────────
+      function buildSummary() {
+        const html = `
+    <div class="summary-row"><span class="summary-label">Layanan</span><span class="summary-val">${booking.service}</span></div>
+    <div class="summary-row"><span class="summary-label">Barber</span><span class="summary-val">${booking.barber}</span></div>
+    <div class="summary-row"><span class="summary-label">Tanggal</span><span class="summary-val">${formatDate(booking.date)}</span></div>
+    <div class="summary-row"><span class="summary-label">Jam</span><span class="summary-val">${booking.time} WITA</span></div>
+    <div class="summary-row"><span class="summary-label">Nama</span><span class="summary-val">${booking.name}</span></div>
+    <div class="summary-row"><span class="summary-label">WhatsApp</span><span class="summary-val">${booking.wa}</span></div>
+    ${booking.note ? `<div class="summary-row"><span class="summary-label">Catatan</span><span class="summary-val">${booking.note}</span></div>` : ""}
+    <div class="summary-row summary-total"><span class="summary-label">Total Pembayaran</span><span class="summary-val">${booking.servicePrice}</span></div>
+  `;
+        document.getElementById("summaryCard").innerHTML = html;
+      }
+
+      // ─── SUBMIT BOOKING ───────────────────────────────
+      function submitBooking() {
+        const id = "KC" + Date.now().toString().slice(-6);
+        const newBook = {
+          id,
+          status: "pending",
+          ...booking,
+          createdAt: new Date().toISOString(),
+        };
+        const list = getBookings();
+        list.push(newBook);
+        saveBookings(list);
+        // Show success
+        document.getElementById("panel5").classList.remove("active");
+        document.getElementById("panelSuccess").classList.add("active");
+        document.getElementById("successName").textContent = booking.name;
+        // WA link
+        const msg = `Halo KingdomCuts! 👋\n\n*BOOKING BARU*\n📋 ID: ${id}\n✂️ Layanan: ${booking.service}\n💈 Barber: ${booking.barber}\n📅 Tanggal: ${formatDate(booking.date)}\n⏰ Jam: ${booking.time} WITA\n👤 Nama: ${booking.name}\n${booking.note ? "📝 Catatan: " + booking.note + "\n" : ""}💰 Total: ${booking.servicePrice}\n\nMohon konfirmasinya. Terima kasih! 🙏`;
+        document.getElementById("waLink").href =
+          `https://wa.me/628001234567?text=${encodeURIComponent(msg)}`;
+        showToast("Booking berhasil disimpan! ✓");
+      }
+
+      function resetBooking() {
+        booking = {
+          service: "",
+          servicePrice: "",
+          barber: "",
+          date: "",
+          time: "",
+          name: "",
+          wa: "",
+          note: "",
+        };
+        document.getElementById("panelSuccess").classList.remove("active");
+        document.getElementById("panel1").classList.add("active");
+        currentStep = 1;
+        updateStepUI();
+        document
+          .querySelectorAll(".select-card,.barber-sel,.time-slot")
+          .forEach((el) => el.classList.remove("selected"));
+        document.getElementById("custName").value = "";
+        document.getElementById("custWa").value = "";
+        document.getElementById("custNote").value = "";
+      }
+
+      // ─── QUICK BOOK FROM PRICING ──────────────────────
+      function bookService(name) {
+        booking.service = name;
+        booking.servicePrice = PRICES[name] || "";
+        document.querySelectorAll("#panel1 .select-card").forEach((c) => {
+          if (
+            c.querySelector(".name")?.textContent.includes(name.split(" ")[0])
+          )
+            c.classList.add("selected");
+        });
+        document
+          .getElementById("booking")
+          .scrollIntoView({ behavior: "smooth" });
+        setTimeout(() => goStep(2), 400);
+      }
+
+      // ─── ADMIN ───────────────────────────────────────
+      function toggleAdmin() {
+        const el = document.getElementById("admin");
+        const isHidden = el.style.display === "none" || el.style.display === "";
+        el.style.display = isHidden ? "block" : "none";
+        if (isHidden) {
+          renderAdmin();
+          el.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+      function setFilter(f, btn) {
+        adminFilter = f;
+        document
+          .querySelectorAll(".filter-btn")
+          .forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        renderAdminTable();
+      }
+      function renderAdmin() {
+        renderAdminStats();
+        renderAdminTable();
+      }
+      function renderAdminStats() {
+        const list = getBookings();
+        const pending = list.filter((b) => b.status === "pending").length;
+        const done = list.filter((b) => b.status === "selesai").length;
+        const cancel = list.filter((b) => b.status === "batal").length;
+        document.getElementById("adminStats").innerHTML = `
+    <div class="admin-stat"><div class="admin-stat-num">${list.length}</div><div class="admin-stat-label">Total Booking</div></div>
+    <div class="admin-stat"><div class="admin-stat-num" style="color:var(--gold)">${pending}</div><div class="admin-stat-label">Pending</div></div>
+    <div class="admin-stat"><div class="admin-stat-num" style="color:#6ec68f">${done}</div><div class="admin-stat-label">Selesai</div></div>
+    <div class="admin-stat"><div class="admin-stat-num" style="color:#e88">${cancel}</div><div class="admin-stat-label">Dibatalkan</div></div>
+  `;
+      }
+      function renderAdminTable() {
+        const search = (
+          document.getElementById("adminSearch")?.value || ""
+        ).toLowerCase();
+        let list = getBookings();
+        if (adminFilter !== "semua")
+          list = list.filter((b) => b.status === adminFilter);
+        if (search)
+          list = list.filter(
+            (b) =>
+              b.name.toLowerCase().includes(search) || b.wa.includes(search),
+          );
+        list = list.sort(
+          (a, b) => new Date(b.createdAt) - new Date(a.createdAt),
+        );
+        const tbody = document.getElementById("adminBody");
+        document.getElementById("emptyAdmin").style.display = list.length
+          ? "none"
+          : "block";
+        tbody.innerHTML = list
+          .map(
+            (b, i) => `
+    <tr>
+      <td style="color:var(--white-muted);font-size:.78rem">${b.id}</td>
+      <td><strong>${b.name}</strong></td>
+      <td><a href="https://wa.me/62${b.wa.slice(1)}" target="_blank" style="color:var(--gold);text-decoration:none">${b.wa}</a></td>
+      <td>${b.service}</td>
+      <td>${b.barber}</td>
+      <td>${formatDate(b.date)}<br><span style="color:var(--white-muted);font-size:.78rem">${b.time} WITA</span></td>
+      <td><span class="status-badge status-${b.status}">${b.status.charAt(0).toUpperCase() + b.status.slice(1)}</span></td>
+      <td>
+        <button class="action-btn" onclick="viewDetail('${b.id}')">Detail</button>
+        ${b.status === "pending" ? `<button class="action-btn" onclick="changeStatus('${b.id}','selesai')">✓ Selesai</button><button class="action-btn danger" onclick="changeStatus('${b.id}','batal')">✕ Batal</button>` : ""}
+      </td>
+    </tr>
+  `,
+          )
+          .join("");
+      }
+      function changeStatus(id, status) {
+        const list = getBookings();
+        const idx = list.findIndex((b) => b.id === id);
+        if (idx > -1) {
+          list[idx].status = status;
+          saveBookings(list);
+          renderAdmin();
+          showToast(`Status diubah ke ${status}`);
+        }
+      }
+      function viewDetail(id) {
+        const b = getBookings().find((b) => b.id === id);
+        if (!b) return;
+        document.getElementById("modalContent").innerHTML = `
+    <div class="summary-card" style="margin:0">
+      <div class="summary-row"><span class="summary-label">ID Booking</span><span class="summary-val" style="color:var(--gold)">${b.id}</span></div>
+      <div class="summary-row"><span class="summary-label">Nama</span><span class="summary-val">${b.name}</span></div>
+      <div class="summary-row"><span class="summary-label">WhatsApp</span><span class="summary-val">${b.wa}</span></div>
+      <div class="summary-row"><span class="summary-label">Layanan</span><span class="summary-val">${b.service}</span></div>
+      <div class="summary-row"><span class="summary-label">Barber</span><span class="summary-val">${b.barber}</span></div>
+      <div class="summary-row"><span class="summary-label">Jadwal</span><span class="summary-val">${formatDate(b.date)}, ${b.time} WITA</span></div>
+      <div class="summary-row"><span class="summary-label">Total</span><span class="summary-val" style="color:var(--gold)">${b.servicePrice}</span></div>
+      ${b.note ? `<div class="summary-row"><span class="summary-label">Catatan</span><span class="summary-val">${b.note}</span></div>` : ""}
+      <div class="summary-row"><span class="summary-label">Status</span><span class="status-badge status-${b.status}">${b.status}</span></div>
+    </div>
+    <a href="https://wa.me/62${b.wa.slice(1)}?text=${encodeURIComponent("Halo " + b.name + "! Booking Anda (ID: " + b.id + ") untuk layanan " + b.service + " dengan barber " + b.barber + " pada " + formatDate(b.date) + " jam " + b.time + " WITA sudah dikonfirmasi. Sampai jumpa! ✂️")}" target="_blank" class="wa-btn" style="margin-top:1.2rem;display:inline-flex">
+      💬 Hubungi via WhatsApp
+    </a>
+  `;
+        document.getElementById("detailModal").classList.add("open");
+      }
+      function closeModal() {
+        document.getElementById("detailModal").classList.remove("open");
+      }
+      document
+        .getElementById("detailModal")
+        .addEventListener("click", function (e) {
+          if (e.target === this) closeModal();
+        });
+
+      function exportCSV() {
+        const list = getBookings();
+        if (!list.length) {
+          showToast("Belum ada data untuk diekspor");
+          return;
+        }
+        const headers = [
+          "ID",
+          "Nama",
+          "WhatsApp",
+          "Layanan",
+          "Barber",
+          "Tanggal",
+          "Jam",
+          "Harga",
+          "Catatan",
+          "Status",
+          "Dibuat",
+        ];
+        const rows = list.map((b) => [
+          b.id,
+          b.name,
+          b.wa,
+          b.service,
+          b.barber,
+          b.date,
+          b.time,
+          b.servicePrice,
+          b.note || "",
+          b.status,
+          b.createdAt,
+        ]);
+        const csv = [headers, ...rows]
+          .map((r) => r.map((c) => `"${c}"`).join(","))
+          .join("\n");
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(new Blob([csv], { type: "text/csv" }));
+        a.download = `KingdomCuts_Booking_${new Date().toISOString().slice(0, 10)}.csv`;
+        a.click();
+        showToast("Data berhasil diekspor");
+      }
+
+      // ─── UTILS ───────────────────────────────────────
+      function formatDate(d) {
+        if (!d) return "-";
+        const days = [
+          "Minggu",
+          "Senin",
+          "Selasa",
+          "Rabu",
+          "Kamis",
+          "Jumat",
+          "Sabtu",
+        ];
+        const months = [
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "Mei",
+          "Jun",
+          "Jul",
+          "Agu",
+          "Sep",
+          "Okt",
+          "Nov",
+          "Des",
+        ];
+        const dt = new Date(d + "T00:00:00");
+        return `${days[dt.getDay()]}, ${dt.getDate()} ${months[dt.getMonth()]} ${dt.getFullYear()}`;
+      }
+      function showToast(msg) {
+        const t = document.getElementById("toast");
+        document.getElementById("toastMsg").textContent = msg;
+        t.classList.add("show");
+        setTimeout(() => t.classList.remove("show"), 3000);
+      }
+    </script>
+  </body>
+</html>
